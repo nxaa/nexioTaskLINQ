@@ -29,7 +29,7 @@ namespace foo1
             owners.Add(new Owner(1, "Marek", "Pawlicki", 80000));
             owners.Add(new Owner(2, "Filip", "Dawidowski", 40000));
 
-            var chosenEmployee = employees.Join(companies, e => e.CompanyId, c => c.CompanyId, (e, c) =>
+            var queryResult = employees.Join(companies, e => e.CompanyId, c => c.CompanyId, (e, c) =>
             new
             {
                 EmployeeId = e.EmployeeId,
@@ -59,7 +59,7 @@ namespace foo1
                                 })
                     .Where(a => a.OwnerFunds < 50000);
 
-            foreach (var item in chosenEmployee)
+            foreach (var item in queryResult)
             {
                 Console.WriteLine(item.EmployeeId.ToString() + " " + item.CompanyName + " " + item.OwnerName);
             }
